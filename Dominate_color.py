@@ -51,7 +51,7 @@ while True:
     cv.imshow('frame', frame)
     
     frame = frame.reshape((frame.shape[0] * frame.shape[1],3)) #represent as row*column,channel number
-    clt = KMeans(n_clusters=3) #cluster number
+    clt = KMeans(n_clusters=3, max_iter=10) #cluster number
     clt.fit(frame)
 
     hist = find_histogram(clt)
