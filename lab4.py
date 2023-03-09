@@ -16,8 +16,9 @@ while True:
     #convert BGR to HSV, comment out for RBG
     imgHSV = cv.cvtColor(frame, cv.COLOR_BGR2HSV)
     #define color you want in HSV
-    low_blue=np.array([100,50,50])
-    up_blue=np.array([130,255,255])
+    low_blue=np.array([100, 50, 50])
+    up_blue=np.array([130, 255, 255])
+  
     
     blue_mask = cv.inRange(imgHSV,up_blue,low_blue)
     
