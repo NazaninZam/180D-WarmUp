@@ -55,6 +55,7 @@ def recognize_speech_from_mic(recognizer, microphone):
 
 if __name__ == "__main__":
     while True:
+        test=False
 
         # create recognizer and mic instances
         recognizer = sr.Recognizer()
@@ -75,11 +76,24 @@ if __name__ == "__main__":
                 choice=(guess["transcription"]["alternative"][i])
                 choices.append(choice['transcript'])
 
-            acceptable_words = ["hello", "world", "how", "are", "you", "b4","B4"]
+            locations = []
+
+            # iterate over all columns and rows
+            for col in range(1, 9):
+                for row in range(1, 9):
+                    # create a string representation of the location
+                    loc = f"{chr(col + 96).upper()}{row}"
+                    # add the location to the list
+                    locations.append(loc)
+               
+            acceptable_words = ["pawn", "bishop", "rook", "knight","queen","king","Pawn", "Bishop", "Rook", "Knight","Queen","King"]
+            acceptable_words+=locations
+            #print(acceptable_words)
             
             for word in choices:
                 if word in acceptable_words:
                     print(f"Recognized word: {word}")
+                    test=True
                     break
             
             if guess["transcription"]:
@@ -94,4 +108,9 @@ if __name__ == "__main__":
             print("ERROR: {}".format(guess["error"]))
 
         # show the user the transcription
-        #print('\n',"You said: {}".format(guess["transcription"]))
+        if test==False:
+            print('\n',"You said: {}".format(guess["transcription"]))
+
+
+
+#say peice, rook, then to what location, if not acceptable move then have the person restate it 
