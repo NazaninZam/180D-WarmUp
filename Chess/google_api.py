@@ -64,7 +64,7 @@ if __name__ == "__main__":
 
         # show instructions and wait 3 seconds 
         print("Say something:\n")
-        time.sleep(1)
+        #time.sleep(1)
 
         while True:
             print('Speak!')
@@ -74,10 +74,41 @@ if __name__ == "__main__":
             # test = guess["transcription"]["alternative"]
             # for item in test.items():
             #      print(item)
-            choices = []
-            for alt in guess["transcription"]: #["alternative"]:cho
-                for newalt in alt["alternative"]:
-                    print(newalt)
+
+    
+
+            choices=[]
+            length=len(guess["transcription"]["alternative"])
+            print(length)
+            print(guess["transcription"]["alternative"])
+            # print(type(guess["transcription"]["alternative"]))
+            # print(1)
+            # print((guess["transcription"]["alternative"][0]))
+            #print(type((guess["transcription"]["alternative"[0]])))
+            #choices.append(guess["transcription"]["alternative"][0])
+           
+           
+            for i in range(0,length):
+                choice=(guess["transcription"]["alternative"][i])
+                choices.append(choice['transcript'])
+            # for choice in guess["transcription"]["alternative"]:
+            #     choices.append(choice["transcription"]) 
+                print(choices)
+
+                #transcription +=guess["transcription"]["alternative"][0] #result.alternative[0].transcription
+                #result['alternatives'][0]['transcript']
+                '''
+                            acceptable_words = ["hello", "world", "how", "are", "you"]
+            recognized_words = transcription.lower().split()
+            for word in recognized_words:
+                if word in acceptable_words:
+                    print(f"Recognized word: {word}")
+
+
+            # choices = []
+            # for alt in guess["transcription"]: #["alternative"]:cho
+            #     for newalt in alt["alternative"]:
+            #         print(newalt)
                 # if choice in pool:
                 #     ret= True
                 # ret= False
@@ -88,6 +119,10 @@ if __name__ == "__main__":
             if not guess["success"]:
                 break
             print("I didn't catch that. What did you say?\n")
+                
+                
+                '''
+
 
         # if there was an error, stop the game
         if guess["error"]:
