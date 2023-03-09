@@ -55,44 +55,25 @@ def recognize_speech_from_mic(recognizer, microphone):
 
 if __name__ == "__main__":
     while True:
-        # set the list of words, maxnumber of guesses, and prompt limit
-        pool = ["rook", "b4"]
 
         # create recognizer and mic instances
         recognizer = sr.Recognizer()
         microphone = sr.Microphone()
 
-        # show instructions and wait 3 seconds 
         print("Say something:\n")
         #time.sleep(1)
 
         while True:
             print('Speak!')
             guess = recognize_speech_from_mic(recognizer, microphone)
-            #print("this is guess: ",guess["transcription"], '\n')
-    
-            # test = guess["transcription"]["alternative"]
-            # for item in test.items():
-            #      print(item)
-
     
 
             choices=[]
             length=len(guess["transcription"]["alternative"])
-            print(length)
-            print(guess["transcription"]["alternative"])
-            # print(type(guess["transcription"]["alternative"]))
-            # print(1)
-            # print((guess["transcription"]["alternative"][0]))
-            #print(type((guess["transcription"]["alternative"[0]])))
-            #choices.append(guess["transcription"]["alternative"][0])
-           
            
             for i in range(0,length):
                 choice=(guess["transcription"]["alternative"][i])
                 choices.append(choice['transcript'])
-
-
 
             acceptable_words = ["hello", "world", "how", "are", "you", "b4","B4"]
             
@@ -100,29 +81,6 @@ if __name__ == "__main__":
                 if word in acceptable_words:
                     print(f"Recognized word: {word}")
                     break
-            # for choice in guess["transcription"]["alternative"]:
-            #     choices.append(choice["transcription"]) 
-            
-
-
-                #transcription +=guess["transcription"]["alternative"][0] #result.alternative[0].transcription
-                #result['alternatives'][0]['transcript']
-                '''
-                            acceptable_words = ["hello", "world", "how", "are", "you"]
-            recognized_words = transcription.lower().split()
-            for word in recognized_words:
-                if word in acceptable_words:
-                    print(f"Recognized word: {word}")
-
-
-            # choices = []
-            # for alt in guess["transcription"]: #["alternative"]:cho
-            #     for newalt in alt["alternative"]:
-            #         print(newalt)
-                # if choice in pool:
-                #     ret= True
-                # ret= False
-                #choices.append(choice['transcript'])
             
             if guess["transcription"]:
                 break
@@ -130,14 +88,10 @@ if __name__ == "__main__":
                 break
             print("I didn't catch that. What did you say?\n")
                 
-                
-                '''
 
-
-        # if there was an error, stop the game
+        # if there was an error, stop 
         if guess["error"]:
             print("ERROR: {}".format(guess["error"]))
 
         # show the user the transcription
-        #print(guess["transcription"])
-        print('\n',"You said: {}".format(guess["transcription"]))
+        #print('\n',"You said: {}".format(guess["transcription"]))
