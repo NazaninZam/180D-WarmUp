@@ -91,9 +91,19 @@ if __name__ == "__main__":
             for i in range(0,length):
                 choice=(guess["transcription"]["alternative"][i])
                 choices.append(choice['transcript'])
+
+
+
+            acceptable_words = ["hello", "world", "how", "are", "you", "b4","B4"]
+            
+            for word in choices:
+                if word in acceptable_words:
+                    print(f"Recognized word: {word}")
+                    break
             # for choice in guess["transcription"]["alternative"]:
             #     choices.append(choice["transcription"]) 
-                print(choices)
+            
+
 
                 #transcription +=guess["transcription"]["alternative"][0] #result.alternative[0].transcription
                 #result['alternatives'][0]['transcript']
