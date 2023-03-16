@@ -111,6 +111,4 @@ if __name__ == "__main__":
         if test==False:
             print('\n',"You said: {}".format(guess["transcription"]))
 
-
-
 #say peice, rook, then to what location, if not acceptable move then have the person restate it 

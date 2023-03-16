@@ -17,8 +17,8 @@ cap = cv2.VideoCapture(1, cv2.CAP_DSHOW)
 # Define the lower and upper bounds for the blue and red colors in HSV color space
 blue_lower = (100, 50, 50)
 blue_upper = (130, 255, 255)
-red_lower = (0, 50, 50)
-red_upper = (20, 255, 255)
+red_lower = (136, 87, 111) #(0, 0, 200)
+red_upper =(180, 255, 255) #(100, 100, 255)
 
 # Initialize the timers
 blue_start_time = 0
