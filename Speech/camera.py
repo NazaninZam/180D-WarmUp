@@ -6,7 +6,9 @@ from sklearn.cluster import KMeans
 cap = cv.VideoCapture(1, cv.CAP_DSHOW)
 #cap = cv.VideoCapture(0)
 
-
+current_player=1
+had_both=False
+printed=False
 
 class Timer:
     def __init__(self, duration):
@@ -61,9 +63,18 @@ class ChessTimer:
     def is_time_up(self):
         return self.get_time_left() < 0
 
-timer = ChessTimer(6)
-timer.switch_player()
+class Player:
+    def switch(turn):
+        global current_player
+        if current_player==1:
+            current_player=0
+        else:
+            current_player=1
+        
+        return current_player
 
+# timer = ChessTimer(6)
+# timer.switch_player()
 
 while(1):
     # Take each frame
@@ -112,7 +123,14 @@ while(1):
     #blue_contours = max(blue_contours, key=cv.contourArea)
     red_contours, hierarchy = cv.findContours(red_thresh, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE)
 
+    # if blue_contour in enumerate(blue_contours):
+    #     print("detected left player")
+
+    # if red_contour in enumerate(red_contours):
+    #     print("detetected right player")
+
     for pic, blue_contour in enumerate(blue_contours): 
+        which_player="left"
         for pic, red_contour in enumerate(red_contours):
                 blue_area = cv.contourArea(blue_contour)
                 red_area = cv.contourArea(red_contour)
@@ -126,9 +144,25 @@ while(1):
                     #imageFrame2=cv.rectangle(frame,(x2,y2),(x2+w2, y2+h2),(0,255,0),2)
                     #cv.putText(imageFrame2, "Red", (x2, y2), cv.FONT_HERSHEY_SIMPLEX, 1.0, (0, 255, 0))
                     which_player="both"
-                    
-                    print("both detected")
 
+        if which_player =="left":
+            if had_both==True:
+                #print("switch players")
+                # need to make sure both is called before switching again
+                # create a list to keep track of prior calls
+                turn= Player.switch("left")
+                had_both=False
+                printed=False
+                if turn==1:
+                    print("player 1's turn")
+                if turn==0:
+                    print("player 2's turn")    
+
+        if which_player=="both":
+            if printed==False:
+                print("Previous player in play")
+                printed=True
+            had_both=True
 
     #if (which_player=="both"):
          #for now example dec timer 1
