@@ -176,13 +176,13 @@ while(1):
                 red_area = cv.contourArea(red_contour)
                 if(blue_area > 300 and red_area>300):
                     x, y, w, h = cv.boundingRect(blue_contour)
-                    imageFrame=cv.drawContours(frame, blue_contours, -1, (255, 0, 0), 3)
+                    #imageFrame=cv.drawContours(frame, blue_contours, -1, (255, 0, 0), 3)
                     #imageFrame = cv.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
-                    cv.putText(imageFrame, "Blue Colour", (x, y), cv.FONT_HERSHEY_SIMPLEX, 1.0, (255, 0, 0))
+                    #cv.putText(imageFrame, "Blue Colour", (x, y), cv.FONT_HERSHEY_SIMPLEX, 1.0, (255, 0, 0))
 
                     x2,y2,w2,h2 = cv.boundingRect(red_contour)
-                    imageFrame2=cv.rectangle(frame,(x2,y2),(x2+w2, y2+h2),(0,255,0),2)
-                    cv.putText(imageFrame2, "Red", (x2, y2), cv.FONT_HERSHEY_SIMPLEX, 1.0, (0, 255, 0))
+                    #imageFrame2=cv.rectangle(frame,(x2,y2),(x2+w2, y2+h2),(0,255,0),2)
+                    #cv.putText(imageFrame2, "Red", (x2, y2), cv.FONT_HERSHEY_SIMPLEX, 1.0, (0, 255, 0))
                     which_player="both"
                     
                     print("both detected")
