@@ -106,69 +106,11 @@ while(1):
     _,blue_thresh = cv.threshold(blue_mask,127,255,0)
     _,red_thresh = cv.threshold(red_mask,127,255,0)
 
-    # blue_mask = cv.dilate(blue_mask, kernal)
-    # res_blue = cv.bitwise_and(frame, frame, mask = blue_mask)
-
-    # red_mask = cv.dilate(red_mask, kernal)
-    # res_red = cv.bitwise_and(frame, frame, mask = red_mask)
-
 
     # Creating contour to track blue color
     blue_contours, hierarchy = cv.findContours(blue_thresh, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE) #cv.RETR_EXTERNAL
     #blue_contours = max(blue_contours, key=cv.contourArea)
     red_contours, hierarchy = cv.findContours(red_thresh, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE)
-    #red_contours = max(red_contours, key=cv.contourArea)
-    '''
-        for pic, blue_contour in enumerate(blue_contours):
-        blue_area = cv.contourArea(blue_contour)
-        if(blue_area > 300):
-            x, y, w, h = cv.boundingRect(blue_contour)
-            imageFrame = cv.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
-            cv.putText(imageFrame, "Blue Colour", (x, y), cv.FONT_HERSHEY_SIMPLEX, 1.0, (255, 0, 0))
-            print("blue detected")
-    
-    '''
-
-
-        
-    # if len(blue_contours)>0:
-    #     blue_area = max(blue_contours, key=cv.contourArea)
-    #     if cv.contourArea(blue_area) > 300: 
-    #         x,y,w,h = cv.boundingRect(blue_area)
-    #         #x, y, w, h = 0, 0, 100, 100 
-    #         imageFrame=cv.rectangle(frame,(x,y),(x+w, y+h),(0,255,0),2)
-    #         cv.putText(imageFrame, "Blue", (x, y), cv.FONT_HERSHEY_SIMPLEX, 1.0, (255, 0, 0))
-    #         print("blue detected")
-
-        # if cv.contourArea(blue_area) < 1000:
-        #     print("no more blue")
-
-
-    '''
-        for pic, red_contour in enumerate(red_contours):
-        red_area = cv.contourArea(red_contour)
-        if(red_area > 300):
-            x, y, w, h = cv.boundingRect(red_contour)
-            imageFrame = cv.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
-            cv.putText(imageFrame, "red Colour", (x, y), cv.FONT_HERSHEY_SIMPLEX, 1.0, (255, 0, 0))
-            print("red detected")
-    
-    '''
-
-
-    # if len(red_contours)>0:
-    #     red_area = max(red_contours, key=cv.contourArea)
-    #     if cv.contourArea(red_area) > 300: 
-    #         x,y,w,h = cv.boundingRect(red_area)
-    #         #x, y, w, h = 0, 0, 100, 100 
-    #         imageFrame=cv.rectangle(frame,(x,y),(x+w, y+h),(0,255,0),2)
-    #         cv.putText(imageFrame, "Red", (x, y), cv.FONT_HERSHEY_SIMPLEX, 1.0, (255, 0, 0))
-    #         print("red detected")
-
-    #     if cv.contourArea(blue_area) < 300:
-    #         print("no more red")
-
-    
 
     for pic, blue_contour in enumerate(blue_contours): 
         for pic, red_contour in enumerate(red_contours):
@@ -198,13 +140,3 @@ while(1):
         cap.release()
         cv.destroyAllWindows()
         break
-
-
-
-'''
-- both colors have to be first detected
-- once blue color lost, stop the timer for white and wait 5 sec to stimulate the moving of 
-the peices (in this process make sure both detected)
-- start the timer for the other player 
-
-'''
